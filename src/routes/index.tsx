@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useState, type FormEvent } from "react";
+import { useState, type FormEvent, type ReactNode } from "react";
 import {
   ArrowRight, Building2, Check, ChevronDown, Factory, Gift, GraduationCap,
   Handshake, HeartHandshake, Hospital, Hotel, Instagram, Menu, MessageCircle,
@@ -112,13 +112,13 @@ function GiftCollection() {
     <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-4">
       {giftPackages.map((gift, index) => <article key={gift.name} className={`group relative overflow-hidden border bg-card ${gift.featured ? "border-primary" : "border-border"}`}>
         {gift.featured && <span className="absolute right-0 top-0 z-10 bg-primary px-3 py-1.5 text-[9px] font-bold uppercase tracking-[0.18em] text-primary-foreground">Most selected</span>}
-        <div className="overflow-hidden"><img src={collectionImage} alt={`${gift.name} premium Diwali gift hamper presentation`} loading="lazy" width={1408} height={1104} className="aspect-[4/3] w-full object-cover transition-transform duration-700 group-hover:scale-105" style={{ objectPosition: `${[18,45,70,90][index]}% center` }} /></div>
+        <div className="overflow-hidden"><img src={collectionImage} alt={`${gift.name} premium Diwali gift hamper presentation`} loading="lazy" width={1408} height={1104} className={`aspect-[4/3] w-full object-cover transition-transform duration-700 group-hover:scale-105 ${["object-[18%_center]","object-[45%_center]","object-[70%_center]","object-[90%_center]"][index]}`} /></div>
         <div className="p-6"><div className="flex items-end justify-between border-b border-border pb-4"><h3 className="text-3xl font-semibold">{gift.name}</h3><p className="text-right"><span className="font-display text-3xl font-bold text-primary">{gift.price}</span><span className="block text-[10px] text-muted-foreground">onwards · min. 50</span></p></div>
           <p className="mt-4 text-sm text-muted-foreground">{gift.description}</p>
           <p className="mt-5 text-[10px] font-bold uppercase tracking-[0.18em]">Inside the box</p>
           <ul className="mt-3 space-y-2">{gift.items.map(item => <li key={item} className="flex gap-2 text-xs text-muted-foreground"><Check className="mt-0.5 size-3 shrink-0 text-primary" />{item}</li>)}</ul>
           <p className="mt-5 text-xs font-semibold">Customization: <span className="font-normal text-muted-foreground">{gift.customization.join(" · ")}</span></p>
-          <Button asChild variant="luxury" className="mt-6 w-full"><a target="_blank" rel="noreferrer" href={whatsappUrl(`Hello CrazyGift,\nI am interested in the ${gift.name} Diwali Gift Hamper.\n\nQuantity:\nCompany/Institute:\nDelivery Location:\n\nPlease share available designs and quotation.`)}><MessageCircle />Order {gift.name.titleCase ? gift.name : gift.name.charAt(0) + gift.name.slice(1).toLowerCase()}</a></Button>
+          <Button asChild variant="luxury" className="mt-6 w-full"><a target="_blank" rel="noreferrer" href={whatsappUrl(`Hello CrazyGift,\nI am interested in the ${gift.name} Diwali Gift Hamper.\n\nQuantity:\nCompany/Institute:\nDelivery Location:\n\nPlease share available designs and quotation.`)}><MessageCircle />Order {gift.name.charAt(0) + gift.name.slice(1).toLowerCase()}</a></Button>
         </div>
       </article>)}
     </div>
@@ -163,7 +163,7 @@ function GiftBuilder() {
   </div></section>;
 }
 
-function Field({ label, children }: { label: string; children: React.ReactNode }) { return <label className="block"><span className="mb-2 block text-xs font-bold uppercase tracking-[0.1em]">{label}</span>{children}</label>; }
+function Field({ label, children }: { label: string; children: ReactNode }) { return <label className="block"><span className="mb-2 block text-xs font-bold uppercase tracking-[0.1em]">{label}</span>{children}</label>; }
 
 function BulkAndProcess() {
   return <><section id="bulk" className="bg-primary py-16"><div className="section-shell grid items-center gap-8 lg:grid-cols-[1fr_auto]">
