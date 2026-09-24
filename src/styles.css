@@ -67,7 +67,7 @@
 @layer base {
   * { border-color: var(--color-border); }
   html { scroll-behavior: smooth; scroll-padding-top: 5rem; }
-  body { background: var(--color-background); color: var(--color-foreground); font-family: var(--font-sans); }
+  body { min-width: 0; overflow-x: clip; background: var(--color-background); color: var(--color-foreground); font-family: var(--font-sans); }
   h1, h2, h3 { font-family: var(--font-display); }
   button, a, input, select, textarea { letter-spacing: 0; }
   ::selection { background: var(--color-primary); color: var(--color-primary-foreground); }
@@ -80,8 +80,11 @@
 .section-shell {
   width: calc(100% - 2rem);
   max-width: 76rem;
+  min-width: 0;
   margin-inline: auto;
 }
+
+.section-shell > * { min-width: 0; }
 
 @utility luxury-grid {
   background-image: linear-gradient(color-mix(in oklab, var(--primary) 8%, transparent) 1px, transparent 1px), linear-gradient(90deg, color-mix(in oklab, var(--primary) 8%, transparent) 1px, transparent 1px);
