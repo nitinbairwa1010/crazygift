@@ -78,7 +78,8 @@
 }
 
 @utility section-shell {
-  width: min(100% - 2rem, 76rem);
+  width: calc(100% - 2rem);
+  max-width: 76rem;
   margin-inline: auto;
 }
 
